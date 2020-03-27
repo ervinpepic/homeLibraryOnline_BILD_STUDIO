@@ -6,6 +6,7 @@
 
         <title>Laravel</title>
 
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -80,9 +81,13 @@
             @endif
 
             <div class="content">
+{{--                @if(\Illuminate\Support\Facades\Auth::check()))--}}
+                    @can('edit_forum')
                 <div class="title m-b-md">
-                    Laravel
+                    Laraveeel
                 </div>
+                        @endcan
+{{--                @endif--}}
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
@@ -96,5 +101,8 @@
                 </div>
             </div>
         </div>
+    <div>
+
+    </div>
     </body>
 </html>

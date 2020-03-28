@@ -58,4 +58,8 @@ class User extends Authenticatable
             echo($user_role);
         }
     }
+
+    public function books() {
+        return $this->belongsToMany(Book::class, 'book_user')->withTimestamps();
+    }
 }

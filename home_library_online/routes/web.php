@@ -23,5 +23,7 @@ Route::post('/books', 'BookController@store')->name('book_save');
 Route::get('/books/create', 'BookController@create')->name('book_create');
 Route::get('/books/list', 'BookController@index')->name('book_list');
 Route::get('/books/{book}', 'BookController@show')->name('book_show');
+Route::post('/books/{book}', 'BookController@rent')->name('book_rent');
+
 
 Route::put('admin/{id}', 'AdminUserController@update');

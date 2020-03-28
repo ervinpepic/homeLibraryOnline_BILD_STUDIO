@@ -6,7 +6,7 @@ use App\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class BookController extends Controller
+class RentBookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
-
-        return view('books.index', compact('books'));
+        //
     }
 
     /**
@@ -27,7 +25,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        //
     }
 
     /**
@@ -36,10 +34,8 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Book $book)
     {
-        Book::create($this->validateBook());
-        return redirect(route('book_list'));
 
     }
 
@@ -51,7 +47,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('books.show', compact('book'));
+        //
     }
 
     /**
@@ -74,7 +70,7 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-
+        //
     }
 
     /**
@@ -86,23 +82,5 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         //
-    }
-
-    public function rent(Request $request, Book $book) {
-//        dd($request->route('book'));
-        new Book();
-        $userId = Auth::id();
-        $book->orderBook($userId);
-        return back();
-    }
-
-    public function validateBook() {
-        return request()->validate([
-            'title' => 'required',
-            'author_name' => 'required',
-            'category' => 'required',
-            'publisher' => 'required',
-            'status' => 'required'
-        ]);
     }
 }

@@ -18,3 +18,9 @@ class Role extends Model
         $this->permissions()->sync($permission,false);
     }
 }
+//$create_permission = Permission::firstOrCreate(['name'=>'edit_fourm']);
+//
+//$create_role = Role::firstOrCreate(['name'=>'moderator']);
+//
+//$create_role->allowTo($create_permission);
+//$user->assignRole($create_role);

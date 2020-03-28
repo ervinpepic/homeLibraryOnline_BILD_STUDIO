@@ -12,7 +12,10 @@
                     <p class="card-text">{{ $book->author }}</p>
                     <p class="card-text">{{ $book->publisher }}</p>
                     <p class="card-text">{{ $book->status }}</p>
-                    <a href="#" class="btn btn-primary">Rent book</a>
+                    <form action="/books/{{ $book->id }}" method="POST">@csrf
+                        <button type="submit" value="{{$book->id}}" class="btn btn-success">Get</button>
+                    </form>
+
                 </div>
             </div>
     </div>

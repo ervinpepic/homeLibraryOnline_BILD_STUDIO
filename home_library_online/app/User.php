@@ -49,9 +49,13 @@ class User extends Authenticatable
     }
 
     public function permissions() {
-        return $this->roles->map->permissions->flatten()->pluck('name')->unique();
+        $user_permissions =  $this->roles->map->permissions->flatten()->pluck('name')->unique();
+        return $user_permissions;
     }
     public function get_roles(){
-        return $this->roles->map(function($user) {return $user->name;})->flatten()->unique();
+        $user_roles = $this->roles->map(function($user) {return $user->name;})->flatten()->unique();
+        foreach ($user_roles as $user_role) {
+            echo($user_role);
+        }
     }
 }

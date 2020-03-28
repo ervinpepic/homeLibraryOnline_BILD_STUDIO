@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use App\Role;
-use App\User;
-use foo\bar;
 use Illuminate\Http\Request;
 
-class AdminUserController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +14,8 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
         $books = Book::all();
-        return view('admin.index', compact(['users', 'books']));
-
+        return view('books.index', compact('books'));
     }
 
     /**
@@ -30,7 +25,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -41,27 +36,29 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Book::create($this->validateBook());
+        return redirect(route('book_list'));
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Book $book)
     {
-        //
+        return view('books.show', compact('book'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Book $book)
     {
         //
     }
@@ -70,26 +67,32 @@ class AdminUserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Book $book)
     {
-
-        $user->where('id', $request->id)->update(['status' => $request->status]);
-        return back();
-
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Book $book)
     {
         //
+    }
+
+    public function validateBook() {
+        return request()->validate([
+            'title' => 'required',
+            'author_name' => 'required',
+            'category' => 'required',
+            'publisher' => 'required',
+            'status' => 'required'
+        ]);
     }
 }

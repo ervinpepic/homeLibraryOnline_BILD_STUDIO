@@ -70,9 +70,13 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{route('book_list')}}">Books</a>
+                        @can('edit_forum')
+                            <a href="{{route('admin_home')}}">Admin</a>
+                            @endcan
                     @else
+                        <a href="{{route('book_list')}}">Books</a>
                         <a href="{{ route('login') }}">Login</a>
-
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use App\Role;
 use App\User;
-use foo\bar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminUserController extends Controller
 {
@@ -15,11 +14,13 @@ class AdminUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $users = User::all();
-        $books = Book::all();
-        return view('admin.index', compact(['users', 'books']));
+        $search_query = $request->input('search_query');
+        $books = Book::search($search_query)->get();
+
+        return view('admin.index', compact(['users', 'books', 'search_query']));
 
     }
 
@@ -41,7 +42,7 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -75,8 +76,17 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $user_id = $request->id;
+        $new_usr = $user::find($user_id);
+        new User();
+        $new_usr->assignRole('User');
 
         $user->where('id', $request->id)->update(['status' => $request->status]);
+
+        Mail::raw('Your account has been approved. You can login now.',function ($message){
+            $email = request('email');
+            $message->to($email)->subject('Account Approval');
+        });
         return back();
 
 

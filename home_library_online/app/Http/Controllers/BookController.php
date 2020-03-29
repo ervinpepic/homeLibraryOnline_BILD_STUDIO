@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -13,11 +14,11 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
-
-        return view('books.index', compact('books'));
+        $search_query = $request->input('search_query');
+        $books = Book::search($search_query)->get();
+        return view('books.index', compact('books','search_query'));
     }
 
     /**
@@ -105,4 +106,5 @@ class BookController extends Controller
             'status' => 'required'
         ]);
     }
+
 }

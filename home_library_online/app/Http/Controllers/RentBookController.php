@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,11 @@ class RentBookController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::id();
+        $user = new User();
+        $ordered_books = $user->find($user_id);
+        $order = $ordered_books->books->flatten()->unique();
+        return view('books.orders', compact('order'));
     }
 
     /**

@@ -3,11 +3,20 @@
 @section('content')
   
   <div class="container">
+    @can('Librarian')
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-12">
+          <a class="btn btn-success float-right" href="{{route('book_create')}}">Enter new Book</a>
+        </div>
+      </div>
+    </div>
+    @endcan
     <div class="row">
       
       <h1 class="mb-5">Admin Panel</h1>
       <hr>
-      
+  
       
       <table class="table table-striped">
         <p class="text-muted mt-5">Approve or disapprove users by click on button approve or disapprove</p>

@@ -9,7 +9,7 @@
   
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+  
   
   <style>
     html, body {
@@ -63,7 +63,7 @@
       margin-bottom: 30px;
     }
   </style>
-  
+
 </head>
 <body>
 <div class="flex-center position-ref full-height">
@@ -73,9 +73,9 @@
         <a href="{{ url('/home') }}">Home</a>
         <a href="{{route('book_list')}}">Books</a>
         <a href="{{ route('book_orders') }}">Your Orders</a>
-        
+        @can('Admin')
           <a href="{{route('admin_home')}}">Admin</a>
-        
+        @endcan
       @else
         <a href="{{ route('login') }}">Login</a>
         @if (Route::has('register'))
@@ -86,10 +86,10 @@
   @endif
   
   <div class="content">
-   
-      <div class="title m-b-md">
-        Laraveeel
-      </div>
+    
+    <div class="title m-b-md">
+      Laraveeel
+    </div>
     
     
     @if (session()->has('message'))

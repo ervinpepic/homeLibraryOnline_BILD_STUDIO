@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  
+{{-- displaying error if user try to login with disapproved account --}}
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -25,4 +25,3 @@
   </div>
 
 @endsection
-  

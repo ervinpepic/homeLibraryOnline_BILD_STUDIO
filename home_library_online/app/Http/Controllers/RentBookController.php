@@ -14,11 +14,15 @@ class RentBookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //in this index function we get user from auth user class, and associate
+    //particular book to himself
     public function index()
     {
         $user_id = Auth::id();
         $user = new User();
         $ordered_books = $user->find($user_id);
+        //after we get particular user, here we call books function from User model.
+        //We defined relationship between books and users
         $order = $ordered_books->books->flatten()->unique();
         return view('books.orders', compact('order'));
     }

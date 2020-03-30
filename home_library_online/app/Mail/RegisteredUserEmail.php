@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ApprovedUser extends Mailable
+class RegisteredUserEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -26,9 +26,9 @@ class ApprovedUser extends Mailable
      *
      * @return $this
      */
-    //returning view for sending email after admin approved user status.
+    //returning view for sending email after registration.
     public function build()
     {
-        return $this->view('emails.approvedUser');
+        return $this->view('emails.registeredEmail');
     }
 }

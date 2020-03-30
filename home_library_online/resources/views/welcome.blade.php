@@ -9,7 +9,7 @@
   
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   
   <style>
     html, body {
@@ -72,6 +72,12 @@
       @auth
         <a href="{{ url('/home') }}">Home</a>
         <a href="{{route('book_list')}}">Books</a>
+        @can('Librarian')
+          <a href="{{route('book_create')}}">Enter new Book</a>
+        @endcan
+        @can('Librarian')
+          <a href="{{route('admin_home')}}">Admin</a>
+        @endcan
         <a href="{{ route('book_orders') }}">Your Orders</a>
         @can('Admin')
           <a href="{{route('admin_home')}}">Admin</a>
@@ -88,7 +94,7 @@
   <div class="content">
     
     <div class="title m-b-md">
-      Laraveeel
+      Welcome to the world of knowledge
     </div>
     
     
@@ -97,20 +103,11 @@
         {{session('message')}}
       </div>
     @endif
-    
-    <div class="links">
-      <a href="https://laravel.com/docs">Docs</a>
-      <a href="https://laracasts.com">Laracasts</a>
-      <a href="https://laravel-news.com">News</a>
-      <a href="https://blog.laravel.com">Blog</a>
-      <a href="https://nova.laravel.com">Nova</a>
-      <a href="https://forge.laravel.com">Forge</a>
-      <a href="https://vapor.laravel.com">Vapor</a>
-      <a href="https://github.com/laravel/laravel">GitHub</a>
-    </div>
+  
   </div>
 </div>
 <div>
 </div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

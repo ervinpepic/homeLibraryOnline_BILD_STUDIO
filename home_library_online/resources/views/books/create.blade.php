@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
 
-
+    {{-- simple form for creating new book --}}
     <form action="/books" method="POST">@csrf
         <div class="form-group">
             <label for="bookTitle">Book Title</label>

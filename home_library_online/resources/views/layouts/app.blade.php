@@ -67,6 +67,9 @@
                                         @can('Admin')
                                         <a class="dropdown-item" href="{{route('admin_home')}}">Admin</a>
                                         @endcan
+                                    @can('Librarian')
+                                        <a class="dropdown-item" href="{{route('admin_home')}}">Admin</a>
+                                    @endcan
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Mail\BookOrdered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class BookController extends Controller
 {
@@ -14,6 +15,7 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //list all books from database, and added search function
     public function index(Request $request)
     {
         $search_query = $request->input('search_query');
@@ -37,6 +39,7 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //storing books to database
     public function store(Request $request)
     {
         Book::create($this->validateBook());
@@ -88,15 +91,25 @@ class BookController extends Controller
     {
         //
     }
-
+    //In this function when users reach show view for particular book,
+    //pressing button to rent a book they get notification by email and session
     public function rent(Request $request, Book $book) {
-//        dd($request->route('book'));
+
         new Book();
         $userId = Auth::id();
         $book->orderBook($userId);
+
+        Mail::to('email@email.com')->send(new BookOrdered());
+
+        $request->session()->flash(
+            'message',
+            'Your order has placed. Librarian will soon notify you.'
+        );
+
         return back();
     }
 
+    //function for validation new book when adding.s
     public function validateBook() {
         return request()->validate([
             'title' => 'required',

@@ -2,7 +2,9 @@
 
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+
 
 class BookSeeder extends Seeder
 {
@@ -19,7 +21,9 @@ class BookSeeder extends Seeder
             'author_name' => Str::random(10),
             'category' => Str::random(6),
             'publisher' => Str::random(6),
-            'status' => 'Available'
+            'status' => 'Available',
+            'created_at' => Carbon::today(),
+            'updated_at' => Carbon::today(),
         ]);
 
     }

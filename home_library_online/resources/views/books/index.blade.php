@@ -27,10 +27,11 @@
     <h2></h2>
     <div class="row">
     
+    {{-- displaying all books from database --}}
       @foreach($books as $book)
         
         <div class="card mr-5 mt-5" style="width: 18rem;">
-          <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
+          <img class="card-img-top" src="https://www.aiga.org/globalassets/migrated-images/uploadedimages/aiga/content/about_aiga/benefits/icon_book_1009.png " alt="Card image cap">
           <div class="card-body">
             <a href="{{route('book_show', ['book' => $book->id])}}"><h5 class="card-title">Book: {{ $book->title }}</h5></a>
             <p class="card-text">Author: {{ $book->author_name }}</p>

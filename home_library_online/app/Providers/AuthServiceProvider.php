@@ -23,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //Registering custom policy for authorization particular roles and users with that roles
         $this->registerPolicies();
 
         Gate::before(function ($user, $role) {

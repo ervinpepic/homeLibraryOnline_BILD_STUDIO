@@ -15,6 +15,7 @@ class AdminUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Here we get All the users from the database, and all books from database to list them in the ADMIN panel area.
     public function index(Request $request)
     {
         $users = User::all();
@@ -75,6 +76,8 @@ class AdminUserController extends Controller
      * @param \App\User $user
      * @return \Illuminate\Http\Response
      */
+    //Here we update particular users status when they register, and automatically assign them role User.
+    // Admin can change that role in the function updateRole bellow
     public function update(Request $request, User $user)
     {
         $user_id = $request->id;
@@ -82,6 +85,7 @@ class AdminUserController extends Controller
         new User();
         $new_usr->assignRole('User');
         $user->where('id', $request->id)->update(['status' => $request->status]);
+
 
         $email = request('email');
         Mail::to($email)->send(new ApprovedUser());
@@ -101,5 +105,20 @@ class AdminUserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    // when Admin click approve user, auto role is User. Here we can change that status to librarian.
+    public function updateUserRole(Request $request, User $user){
+
+        new User();
+
+        $user_id = $request->id;
+        $get_role = request('role');
+
+        $new_usr = $user::find($user_id);
+        $new_usr->assignRole($get_role);
+
+        return back();
+
     }
 }

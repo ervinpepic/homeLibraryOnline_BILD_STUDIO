@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminUserController@index')->name('admin_home')->middleware('can:Admin');
-Route::get('/admin/librarian', 'AdminUserController@index')->name('admin_home')->middleware('can:Librarian');
+Route::get('/admin/librarian', 'AdminUserController@index')->name('admin_home_library')->middleware('can:Librarian');
 
 Route::post('/books', 'BookController@store')->name('book_save');
 Route::get('/books/create', 'BookController@create')->name('book_create')->middleware('can:Librarian');

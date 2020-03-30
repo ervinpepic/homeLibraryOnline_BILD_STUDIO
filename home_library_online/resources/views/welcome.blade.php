@@ -76,7 +76,7 @@
           <a href="{{route('book_create')}}">Enter new Book</a>
         @endcan
         @can('Librarian')
-          <a href="{{route('admin_home')}}">Admin</a>
+          <a href="{{route('admin_home_library')}}">Admin Librarian</a>
         @endcan
         <a href="{{ route('book_orders') }}">Your Orders</a>
         @can('Admin')

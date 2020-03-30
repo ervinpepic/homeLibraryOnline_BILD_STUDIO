@@ -45,18 +45,11 @@ class User extends Authenticatable
         if(is_string($role)) {
             $role = Role::whereName($role)->firstOrFail();
         }
-        $this->roles()->sync($role, true);
+        return $this->roles()->sync($role, true);
     }
 
-    public function permissions() {
-        $user_permissions =  $this->roles->map->permissions->flatten()->pluck('name')->unique();
-        return $user_permissions;
-    }
     public function get_roles(){
-        $user_roles = $this->roles->map(function($user) {return $user->name;})->flatten()->unique();
-        foreach ($user_roles as $user_role) {
-            echo($user_role);
-        }
+        return $this->roles->map(function($user) {return $user->name;});
     }
 
     public function books() {

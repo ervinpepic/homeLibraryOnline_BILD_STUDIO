@@ -17,7 +17,6 @@
           <th scope="col">Full Name</th>
           <th scope="col">Status of approval</th>
           <th scope="col">Email</th>
-          <th scope="col">Permissions</th>
           <th scope="col">Role</th>
         </tr>
         </thead>
@@ -45,12 +44,8 @@
               </form>
             </td>
             <td>{{ $user->email }}</td>
-            @foreach($user->permissions() as $single_user_permission)
-              <td>{{ $single_user_permission }}
-              </td>
-            @endforeach
-            <td>{{ $user->get_roles() }}
-            </td>
+           
+            <td>{{ $user->get_roles()->first() }}</td>
           
           </tr>
         @endforeach

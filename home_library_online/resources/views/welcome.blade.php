@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title>Laravel</title>
+  <title>Home Library</title>
   
   
   <!-- Fonts -->
@@ -73,9 +73,9 @@
         <a href="{{ url('/home') }}">Home</a>
         <a href="{{route('book_list')}}">Books</a>
         <a href="{{ route('book_orders') }}">Your Orders</a>
-        @can('edit_forum')
+        
           <a href="{{route('admin_home')}}">Admin</a>
-        @endcan
+        
       @else
         <a href="{{ route('login') }}">Login</a>
         @if (Route::has('register'))
@@ -86,11 +86,11 @@
   @endif
   
   <div class="content">
-    @can('edit_forum')
+   
       <div class="title m-b-md">
         Laraveeel
       </div>
-    @endcan
+    
     
     @if (session()->has('message'))
       <div class="alert alert-info" role="alert">

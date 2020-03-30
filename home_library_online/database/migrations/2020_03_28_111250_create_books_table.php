@@ -24,12 +24,13 @@ class CreateBooksTable extends Migration
         });
 
         Schema::create('book_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('book_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('book_id');
             $table->timestamps();
 
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+
         });
     }
 
